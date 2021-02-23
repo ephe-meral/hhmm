@@ -57,7 +57,7 @@ A [Markov model](https://en.wikipedia.org/wiki/Markov_model), named after the Ru
 Let's go back to the weather and model it simplistically with only three states (that we check for each morning): 'Sunny', 'Cloudy' and 'Rainy'.
 Now, by writing down our observations over a period of time and counting how often e.g. 'Cloudy' followed after 'Sunny', we can create a model similar to this one:
 
-![Sample markov chain with weather states and transition probabilities](/home/amnesia/projects/hhmm/weather_mc.png)
+![Sample markov chain with weather states and transition probabilities](weather_mc.png)
 **State transition probability diagram of a simple weather model. Note that all transitions from one state to another only depend on the current state and their probabilities sum up to 100%. (Graphic by author)**
 
 With this, we defined a simple [Markov chain](https://en.wikipedia.org/wiki/Markov_chain).
@@ -98,7 +98,7 @@ These effects are probabilistic of their own account though.
 
 Let's again look at the weather and the potential effects it might have on the world:
 
-![Sample HMM with weather states and effects](/home/amnesia/projects/hhmm/weather_hmm.png)
+![Sample HMM with weather states and effects](weather_hmm.png)
 **State transition diagram of 'hidden' Markov chain with effects and probabilities thereof. Note that one state can potentially have more than one observable effect, which leads to the problem that states cannot be directly inferred from observations. (Graphic by author)**
 
 In this example, we again have three states of underlying weather (a bit simplistic, but oh well), however, this time we also show their observable effects on the world (in this case, what people are wearing) and the probabilities of seeing them.
@@ -143,7 +143,7 @@ This is the nature of the hierarchy here: It is used to represent abstractions o
 The mentioned paper used the approach to train the model on an English text corpus, which shows the ideas quite nicely [3].
 The following graph is an annotated subset of their findings:
 
-![Sample HHMM with outputs](/home/amnesia/projects/hhmm/text_hhmm.png)
+![Sample HHMM with outputs](text_hhmm.png)
 **State transitions and example path within a simplified hierarchical hidden Markov model. Here, we show text production going from letters or letter combinations to short words to parts of a sentence. Probabilities are not included to enhance legibility. (Graphic by author)**
 
 ### Relation to the Human Brain
