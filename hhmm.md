@@ -119,6 +119,10 @@ If that's not done yet, you face another challenge:
 
 It goes without saying, all of these problems have been addressed for many years now and formulas are well known. We'll go through them in more detail when we implement them.
 
+Another important use that is somehow rarely mentioned is data creation:
+
+4. Use an existing trained model and a start state (chosen based also on model parameters) to iterate through the states of the model. Choose next states (and output) based on the probabilities recorded within the model.
+
 ## Hierarchical Hidden Markov Models
 
 So far we only looked at an extremely simple HMM.
@@ -146,30 +150,64 @@ The following graph is an annotated subset of their findings:
 ![Sample HHMM with outputs](text_hhmm.png)
 **State transitions and example path within a simplified hierarchical hidden Markov model. Here, we show text production going from letters or letter combinations to short words to parts of a sentence. Probabilities are not included to enhance legibility. (Graphic by author)**
 
+In the example above we traced a production path from root node over a second level down to production states that will output letters.
+
+Each gray arrow going downward is a 'vertical' transition, and will be taken - if possible - before any of the black 'horizontal' arrows are considered.
+That means both the probabilities of the gray arrows as well as the probabilities of the black arrows of a state must respectively sum up to 1.
+
+The partial path marked in red would then produce the word 'the' as the implicit output of the state of the second level.
+
 ### Relation to the Human Brain
 
-According to Kurzweil, these hierarchies of pattern matchers and/or output producers are how we can picture the structure of the human neocortex [1].
-This is the part of our brain that takes on higher-level tasks, such as language understanding and production.
+According to Kurzweil, these hierarchies of pattern matchers and/or output producers are how we can picture the structure of the human neocortex on a conceptual level [1].
+This is the part of our brain that takes on complex tasks, such as language understanding and production.
 
-The same way that the example above produces more and more complex text, the higher in the hierarchy we look at the output, an equivalent structure in the human brain could e.g. include concepts like humor and irony on the top-level. (split it into more sentences, i am lost for meaning here)
+In the text generation model, the higher in the hierarchy we go, the more complex the output will be.
+Lowest-level production states will generate some single letters, while on the level of the root node, we could expect to see entire sentences.
 
-This similarity is why I assume Kurzweil suggested these as viable models for a human brain. Or, more specifically, for a conscious mind.
+According to Kurzweil there are similar hierarchies in the neocortex that handle language processing all from parts of words up till concepts like humor and irony on the top most level.
+This similarity is why I assume he suggested HHMMs as a viable basis for modeling a conscious mind.
 
 ### Uses
 
-A very famous example use case for these models and HMMs (practically since the 1970's) is speech recognition and speech synthesis.
+Generally speaking, HHMMs and HMMs both are used in similar areas: Wherever sequential data is not directly recordable, but something else is.
+The point of the model, then, is to infer the actual data from whatever other effect has been recorded.
+
+A very famous example for this (practically since the 1970's) is speech recognition and speech synthesis.
 There, short sequences of sound are analyzed using a Fourier transformation and 'translated' into the most likely phonemes and - on a higher level - words from a known vocabulary.
 
 These algorithms have continuously improved since then and enable us now to use voice assistants like Siri or Alexa on our mobile devices.
 
+For some more inspirations, [wikipedia has a longer list of applications here](https://en.wikipedia.org/wiki/Hidden_Markov_model#Applications).
+
+### Limits
+
+As Kurzweil mentions in the article, so far we expected to know upfront what the topology of the network looks like (i.e. how many internal states and levels there are and how states are connected).
+Given this information, we can then use the mentioned algorithms to train the model and extract useful information from it.
+
+But this upfront knowledge of the network topology rarely exists.
+How would we, e.g. have to structure the network to correctly produce English sentences of a certain length?
+Even without assigning probabilities, this is an incredibly hard task.
+
+Experiments by the authors of [3] show that small changes in the structure of the hierarchy can influence the quality of the language analysis capabilities of the network by quite a bit.
+
+One solution employed for speech recognition, is to start creating small parts of the network that would only recognize single words, and aggregate these into a larger model.
+
+Kurzweil also mentions a genetic-algorithm-based approach to improving network topology, which, I assume, is just one of many applicable optimization techniques.
+
+_[CITATION NEEDED!] Another limit to these models is the fact that the probabilities are static: There is no chance to include contextual information into what the model might produce.
+Imagine, for example, that you have a gigantic HHMM that can produce elaborate text about a variety of topics.
+By the sheer nature of the underlying stochastic process, there is no way to 'tell it' what topic to focus on. I.e. there is no way to integrate contextual data into the output production process of the model._
+
 ## Next Steps
 
 As mentioned, I'll continue this topic with a more technical article illustrating an implementation of an HHMM, based on the research presented in [3].
-My hope is to reproduce (in a tutorial style article) some of their results on natural language analysis. In the best case, we'll see some nice hierarchy-level dependent abstractions of sample texts. [FIXME]
+My hope is to reproduce (in a tutorial style article) some of their results on natural language analysis.
+In the best case, we can see how sample texts can be mapped onto some nice hierarchy-level dependent abstractions.
 
 ---
 
-All finished source documents, notebooks and code related to this is also available on [Github](). Please feel encouraged to leave feedback and suggest improvements.
+All finished source documents, notebooks and code related to this is also available on [Github](https://github.com/ephe-meral/hhmm). Please feel encouraged to leave feedback and suggest improvements.
 
 ---
 
