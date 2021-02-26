@@ -208,7 +208,7 @@ Kurzweil also mentions a genetic-algorithm-based approach to improving network t
 With the examples we were looking at, both the state space as well as the space of possible outputs was both discrete and finite.
 This means that we have a set number of states and observations arranged in our aforementioned network topology.
 
-I'm not sure if HHMMs would generalizable beyond that, but HMMs apparently are to a certain degree. One could, for example, assume a continuous state space (think: real numbers, e.g. as a vector to designate a state).
+I'm not sure if HHMMs would be generalizable beyond that, but HMMs apparently are to a certain degree. One could, for example, assume a continuous state space (think: real numbers, e.g. in a multidimensional vector to designate a state).
 
 This does not seem relevant for Kurzweils ideas on simulating parts of the brain though, so we'll not go into detail on that part.
 
