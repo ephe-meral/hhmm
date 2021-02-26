@@ -182,6 +182,8 @@ For some more inspirations, [wikipedia has a longer list of applications here](h
 
 ### Limits
 
+#### Topology
+
 As Kurzweil mentions in the article, so far we expected to know upfront what the topology of the network looks like (i.e. how many internal states and levels there are and how states are connected).
 Given this information, we can then use the mentioned algorithms to train the model and extract useful information from it.
 
@@ -195,9 +197,24 @@ One solution employed for speech recognition, is to start creating small parts o
 
 Kurzweil also mentions a genetic-algorithm-based approach to improving network topology, which, I assume, is just one of many applicable optimization techniques.
 
-_[CITATION NEEDED!] Another limit to these models is the fact that the probabilities are static: There is no chance to include contextual information into what the model might produce.
+#### State Space
+
+With the examples we were looking at, both the state space as well as the space of possible outputs was both discrete and finite.
+This means that we have a set number of states and observations arranged in our aforementioned network topology.
+
+I'm not sure if HHMMs would generalizable beyond that, but HMMs apparently are to a certain degree. One could, for example, assume a continuous state space (think: real numbers, e.g. as a vector to designate a state).
+
+This does not seem relevant for Kurzweils ideas on simulating parts of the brain though, so we'll not go into detail on that part.
+
+#### Transition and Output Probabilities
+
+Another limit to these models stems from the Markov property itself: Since the probabilities are static and depend only on the current state, there is no way to include time-depedent, contextual information into what the model outputs.
+
+This would be especially interesting for text generation using an HHMM or HMM, since it would enable us to learn to 'respond' to outside stimulus.
+
 Imagine, for example, that you have a gigantic HHMM that can produce elaborate text about a variety of topics.
-By the sheer nature of the underlying stochastic process, there is no way to 'tell it' what topic to focus on. I.e. there is no way to integrate contextual data into the output production process of the model._
+If you would like to use that model in a conversational interface (say, a chat bot for example), it would be great to be able to learn _with what_ to respond depending on the understood user query.
+Interestingly, this has been explored already in so-called Input/Output HMMs [4].
 
 ## Next Steps
 
@@ -213,4 +230,5 @@ All finished source documents, notebooks and code related to this is also availa
 
 [1] R. Kurzweil, "How to create a mind: The secret of human thought revealed" (2012), Penguin
 [2] D. Kahneman, "Thinking, fast and slow" (2011), Macmillan
-[3] S. Fine, Y. Singer, and N. Tishby, [The hierarchical hidden Markov model: Analysis and applications](https://link.springer.com/content/pdf/10.1023/A:1007469218079.pdf) (1998), Machine learning 32.1 (pp. 41-62)
+[3] S. Fine, Y. Singer, and N. Tishby, ["The hierarchical hidden Markov model: Analysis and applications"](https://link.springer.com/content/pdf/10.1023/A:1007469218079.pdf) (1998), Machine learning 32.1 (pp. 41-62)
+[4] Y. Bengio, and P. Frasconi, ["An input output HMM architecture"](http://www.iro.umontreal.ca/~lisa/bib/pub_subject/finance/pointeurs/iohmms.pdf) (1995), Advances in neural information processing systems (pp. 427-434)
