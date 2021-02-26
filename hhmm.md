@@ -219,7 +219,7 @@ Another limit to these models stems from the Markov property itself: Since the p
 This would be especially interesting for text generation using an HHMM or HMM, since it would enable us to learn to 'respond' to outside stimulus.
 
 Imagine, for example, that you have a gigantic HHMM that can produce elaborate text about a variety of topics.
-If you would like to use that model in a conversational interface (say, a chat bot for example), it would be great to be able to learn _with what_ to respond depending on the understood user query.
+If you would like to use that model in a conversational interface (say, a chat bot for example), it would be great to be able to learn _with what_ to respond depending on what the user asked.
 Interestingly, this has been explored already in so-called Input/Output HMMs [4].
 
 ## Next Steps
