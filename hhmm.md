@@ -54,10 +54,10 @@ So without further ado, let's jump into this next topic now.
 
 A [Markov model](https://en.wikipedia.org/wiki/Markov_model), named after the Russian mathematician [Andrey Markov](https://en.wikipedia.org/wiki/Andrey_Markov) is a stochastic model (or process) with a specific property - called, who would have guessed, the Markov property - that requires a future state of the process to be depending only on the current state.
 
-Let's go back to the weather and model it simplistically with only three states (that we check for each morning): 'Sunny', 'Cloudy' and 'Rainy'.
-Now, by writing down our observations over a period of time and counting how often e.g. 'Cloudy' followed after 'Sunny', we can create a model similar to this one:
+Let's go back to the weather and model it simplistically with only three states (that we check for each morning): "Sunny", "Cloudy" and "Rainy".
+Now, by writing down our observations over a period of time and counting how often e.g. "Cloudy" followed after "Sunny", we can create a model similar to this one:
 
-![Sample markov chain with weather states and transition probabilities](weather_mc.png)
+![Example of a Markov chain for a simplified weather model with the states "Sunny", "Cloudy" and "Rainy" and transitions between them](weather_mc.png)
 **State transition probability diagram of a simple weather model. Note that all transitions from one state to another only depend on the current state and their probabilities sum up to 100%. (Graphic by author)**
 
 With this, we defined a simple [Markov chain](https://en.wikipedia.org/wiki/Markov_chain).
@@ -98,7 +98,7 @@ These effects are themselves probabilistic.
 
 Let's look at the weather again and what potential effects it might have on the world:
 
-![Sample HMM with weather states and effects](weather_hmm.png)
+![Example of a hidden Markov model, based on the earlier weather model. Here, effects of each state have been added. "Sunny" weather causes people to wear "T-Shirts" and "Sweaters". "Cloudy" weather causes people to wear "Sweaters" and "Parkas". "Rainy" weather causes people to wear "Parkas" and "Rain Coats".](weather_hmm.png)
 **State transition diagram of 'hidden' Markov chain with effects and probabilities thereof. Note that one state can potentially have more than one observable effect, which leads to the problem that states cannot be directly inferred from observations. (Graphic by author)**
 
 In this example, we again have three states of underlying weather (a bit simplistic, but oh well). However, this time we also show their observable effects on the world (in this case, what people are wearing) and the probabilities of seeing them.
@@ -151,7 +151,7 @@ This is the nature of the hierarchy here: It is used to represent abstractions o
 The aforementioned paper uses the approach to train the model on an English text corpus, which shows the ideas quite nicely.
 Let's use that example and picture how a part of such a network could look like:
 
-![Sample HHMM with outputs](text_hhmm.png)
+![Example of a hierarchical hidden Markov model with 3 levels. On the top is the root node, on the second layer are 4 internal and one exit state and on the third layer, the bottom layer, are two production states and an exit state. The two production states have connections to the output letters "e", "w" and "th". Transitions between layers are marked with gray arrows and transitions between states of the same level are marked with black arrows. An example path is marked in red.](text_hhmm.png)
 **State transitions and example path within a simplified hierarchical hidden Markov model. Here, we show text production going from letters or letter combinations to short words to parts of a sentence. Probabilities are not included to enhance legibility. (Graphic by author)**
 
 In the example above we traced a production path from root node over a second level down to production states that will output letters (or letter combinations).
